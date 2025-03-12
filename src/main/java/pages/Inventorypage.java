@@ -3,10 +3,7 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
-
 import base.TestBase;
-import utility.HandleDropDown;
 
 
 public class Inventorypage  extends TestBase {
@@ -25,9 +22,9 @@ public class Inventorypage  extends TestBase {
 	@FindBy(xpath="//select[@class='product_sort_container']")private WebElement dropdownlist;
     @FindBy(xpath="//a[@class='shopping_cart_link']")private WebElement CartIcon;
     @FindBy(xpath="//span[@class='shopping_cart_badge']") private WebElement cartCount;
-	@FindBy(xpath="//button[@id='remove-'sauce-labs-onesie']")private WebElement removebackpackProduct;
+    @FindBy(xpath="//button[@id='remove-sauce-labs-backpack']") private WebElement removebackpackProduct;
 	@FindBy(xpath="//button[@id='remove-sauce-labs-bike-light']")private WebElement removebikelightProduct;
-	
+	@FindBy(xpath="//div[@class='footer_copy']") private WebElement footer;
 	public Inventorypage ()
 	{
 		PageFactory.initElements(driver,this);
@@ -54,7 +51,7 @@ public class Inventorypage  extends TestBase {
 	public String add6Product() throws InterruptedException
 	{
 		
-		HandleDropDown.handleselect(dropdownlist, "Price(low to high)");
+		//HandleDropDown.handleselect(dropdownlist, "Name( A To Z)");
 		
 		backpackProduct.click();
 		bikeLighProduct.click();
@@ -65,19 +62,36 @@ public class Inventorypage  extends TestBase {
 		return cartCount.getText();
 	}
 	
+	
+	
+	
 	public String remove2product() throws InterruptedException
 	
 	{
 		add6Product();
 		Thread.sleep(8000);
 		removebackpackProduct.click();
-		//removebikelightProduct.click();
-		return cartCount.getText();
+		removebikelightProduct.click();
+		return cartCount.getText();   
+		
 		
 		
 		
 	}
-	
-	
+	public String VerifyFooter()
+	{
+		return footer.getText();
+	}
+	public void ClickOnCartIcon()
+	{
+		
+		 CartIcon.click();;
+		
+	}
+
+	public void CartPageTitleTest() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
